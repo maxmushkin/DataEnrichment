@@ -4,24 +4,6 @@
 
 ![Message enrichments flow](./media/message-enrichments-flow.png)
 
-A message enrichment has three key elements:
-
-* Enrichment name or key
-
-* A value
-
-* One or more endpoints for which the enrichment should be applied.
-
-The **key** is a string. A key can only contain alphanumeric characters or these special characters: hyphen (`-`), underscore (`_`), and period (`.`).
-
-The **value** can be any of the following examples:
-
-* Any static string. Dynamic values such as conditions, logic, operations, and functions are not allowed. For example, if you develop a SaaS application that is used by several customers, you can assign an identifier to each customer and make that identifier available in the application. When the application runs, IoT Hub will stamp the device telemetry messages with the customer's identifier, making it possible to process the messages differently for each customer.
-
-* The name of the IoT hub sending the message. This value is *$iothubname*.
-
-* Information from the device twin, such as its path. Examples would be *$twin.tags.field* and *$twin.tags.latitude*.
-
 In this tutorial, we will create and configure the resources that are needed to test the message enrichments for an IoT hub. The resources include one storage account with two storage containers. One container holds the enriched messages, and another container holds the original messages. Also included is an IoT hub to receive the messages and route them to the appropriate storage container based on whether they're enriched or not. Also we will deploy Divice simulator and configure it to send telemetry data to initially created IoTHub.
 
 * We will use the Azure CLI to create the resources and configure the message routing and define enrichment rules.
@@ -131,6 +113,24 @@ Review Device Twin properties:
 
 Review IoT Hub Data Enrichment:
 ![IoT Hub Data Enrichment](./media/IoTHubDataEnrichment.png)
+
+A message enrichment has three key elements:
+
+* Enrichment name or key
+
+* A value
+
+* One or more endpoints for which the enrichment should be applied.
+
+The **key** is a string. A key can only contain alphanumeric characters or these special characters: hyphen (`-`), underscore (`_`), and period (`.`).
+
+The **value** can be any of the following examples:
+
+* Any static string. Dynamic values such as conditions, logic, operations, and functions are not allowed. For example, if you develop a SaaS application that is used by several customers, you can assign an identifier to each customer and make that identifier available in the application. When the application runs, IoT Hub will stamp the device telemetry messages with the customer's identifier, making it possible to process the messages differently for each customer.
+
+* The name of the IoT hub sending the message. This value is *$iothubname*.
+
+* Information from the device twin, such as its path. Examples would be *$twin.tags.field* and *$twin.tags.latitude*.
 
 Lastly let's check what we've got in Azure storage:
 ![Azure Storage Containers](./media/AzureStorageContainers.png)
