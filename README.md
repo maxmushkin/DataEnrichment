@@ -22,11 +22,6 @@ The **value** can be any of the following examples:
 
 * Information from the device twin, such as its path. Examples would be *$twin.tags.field* and *$twin.tags.latitude*.
 
-   > [!NOTE]
-   > At this time, only $iothubname, $twin.tags, $twin.properties.desired, and $twin.properties.reported are supported variables for message enrichment.
-
-Message Enrichments are added as application properties to messages sent to chosen endpoint(s).
-
 In this tutorial, we will create and configure the resources that are needed to test the message enrichments for an IoT hub. The resources include one storage account with two storage containers. One container holds the enriched messages, and another container holds the original messages. Also included is an IoT hub to receive the messages and route them to the appropriate storage container based on whether they're enriched or not. Also we will deploy Divice simulator and configure it to send telemetry data to initially created IoTHub.
 
 * We will use the Azure CLI to create the resources and configure the message routing and define enrichment rules.
@@ -34,7 +29,7 @@ In this tutorial, we will create and configure the resources that are needed to 
 ## Prerequisites
 
 * You must have an Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-* Install [Visual Studio Code](https://code.visualstudio.com/). 
+* Install [Visual Studio Code](https://code.visualstudio.com/).
 
 ## Resources creation and configuration script
 Open dataenrichmentdevicetwins.azcli in VS Code or Azure [Cloud Shell window](https://shell.azure.com) and ensure that it's set to Bash.
@@ -116,3 +111,94 @@ az iot hub device-twin update --device-id $deviceId --hub-name $iotHubName --set
 # Use this command to delete resource group when no longer needed
 # az group delete -n $resourceGroupName
 ```
+At this point, the resources are all set up and the message routing is configured. You can view the message routing configuration and message enrichments in the portal.
+
+## Azure resources review
+
+![Created Azure Resources](./media/azureresources.jpg)
+
+Here we can see that we've got an IoT Hub, Device Simulator function app and Storage.
+
+[Device Simulator](https://github.com/maxmushkin/IoTHubDeviceSimulator/) has been deployed and configured and we can view and modify it right from the Azure Portal if needed. Follow the link to know more about device Simulator.
+![Device Simulator sources](./media/DeployedDeviceSimulator.png)
+
+We can review IoT Hub routes and endpoints
+![IoT Hub Routes](./media/IoTHubRoutes.png)
+
+Review Device Twin properties:
+![Device Twin souproperties](./media/DeviceTwin.png)
+
+Review IoT Hub Data Enrichment:
+![IoT Hub Data Enrichment](./media/IoTHubDataEnrichment.png)
+
+Lastly let's check what we've got in Azure storage:
+![Azure Storage Containers](./media/AzureStorageContainers.png)
+In addition to service containers, we can see rawdata and enricheddt containers storing raw and enriched data respectively.
+
+We can preview raw data from the portal:
+![Azure Storage Containers](./media/rawdata.png)
+
+Raw json message:
+
+```json
+{ 
+   "EnqueuedTimeUtc":"2020-02-17T13:55:00.1990000Z",
+   "Properties":{ 
+
+   },
+   "SystemProperties":{ 
+      "connectionDeviceId":"SimulatedDevice000001",
+      "connectionAuthMethod":"{\"scope\":\"device\",\"type\":\"sas\",\"issuer\":\"iothub\",\"acceptingIpFilterRule\":null}",
+      "connectionDeviceGenerationId":"637175385829057113",
+      "contentType":"application/json",
+      "contentEncoding":"utf-8",
+      "enqueuedTime":"2020-02-17T13:55:00.1990000Z"
+   },
+   "Body":{ 
+      "timestamp":"2/17/2020, 1:54:59 PM",
+      "gwy":"b121IoTWorx",
+      "name":"Device_1210101_AV_104",
+      "value":20.079048389198046,
+      "tag":"DEGREES-FAHRENHEIT"
+   }
+}
+```
+
+We can preview raw data from the portal:
+![Azure Storage Containers](./media/EnrichedData.png)
+
+Enriched json message:
+
+```json
+{ 
+   "EnqueuedTimeUtc":"2020-02-17T13:55:00.1990000Z",
+   "Properties":{ 
+      "Unit":"A1",
+      "Building":"B121",
+      "Region":"PugetSound",
+      "Tag":"HTG LPO",
+      "Floor":"L01",
+      "Equipment":"VSVAV",
+      "Campus":"WestCampus"
+   },
+   "SystemProperties":{ 
+      "connectionDeviceId":"SimulatedDevice000001",
+      "connectionAuthMethod":"{\"scope\":\"device\",\"type\":\"sas\",\"issuer\":\"iothub\",\"acceptingIpFilterRule\":null}",
+      "connectionDeviceGenerationId":"637175385829057113",
+      "contentType":"application/json",
+      "contentEncoding":"utf-8",
+      "enqueuedTime":"2020-02-17T13:55:00.1990000Z"
+   },
+   "Body":{ 
+      "timestamp":"2/17/2020, 1:54:59 PM",
+      "gwy":"b121IoTWorx",
+      "name":"Device_1210101_AV_104",
+      "value":20.079048389198046,
+      "tag":"DEGREES-FAHRENHEIT"
+   }
+}
+```
+
+[!NOTE]
+   > At this time, only $iothubname, $twin.tags, $twin.properties.desired, and $twin.properties.reported are supported variables for message enrichment.
+   > Message Enrichments are added as application properties to messages sent to chosen endpoint(s).
