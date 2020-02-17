@@ -111,11 +111,12 @@ az iot hub device-twin update --device-id $deviceId --hub-name $iotHubName --set
 # Use this command to delete resource group when no longer needed
 # az group delete -n $resourceGroupName
 ```
+
 At this point, the resources are all set up and the message routing is configured. You can view the message routing configuration and message enrichments in the portal.
 
 ## Azure resources review
 
-![Created Azure Resources](./media/azureresources.jpg)
+![Created Azure Resources](./media/AzureResources.jpg)
 
 Here we can see that we've got an IoT Hub, Device Simulator function app and Storage.
 
@@ -133,6 +134,7 @@ Review IoT Hub Data Enrichment:
 
 Lastly let's check what we've got in Azure storage:
 ![Azure Storage Containers](./media/AzureStorageContainers.png)
+
 In addition to service containers, we can see rawdata and enricheddt containers storing raw and enriched data respectively.
 
 We can preview raw data from the portal:
@@ -200,5 +202,6 @@ Enriched json message:
 ```
 
 [!NOTE]
-   > At this time, only $iothubname, $twin.tags, $twin.properties.desired, and $twin.properties.reported are supported variables for message enrichment.
-   > Message Enrichments are added as application properties to messages sent to chosen endpoint(s).
+
+   > * At this time, only $iothubname, $twin.tags, $twin.properties.desired, and $twin.properties.reported are supported variables for message enrichment.
+   > * Message Enrichments are added as application properties to messages sent to chosen endpoint(s).
