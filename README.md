@@ -38,11 +38,12 @@ In this tutorial, we will create and configure the resources that are needed to 
 
 ## Resources creation and configuration script
 Open dataenrichmentdevicetwins.azcli in VS Code or Azure [Cloud Shell window](https://shell.azure.com) and ensure that it's set to Bash.
+Specify your own Azure Subscription name and preferred Resource Group name bellow.
 
 ```azurecli-interactive
 # Initialize these variables:
-$subscriptionId = "MaxLab"
-$resourceGroupName = "maxdetwins1"
+$subscriptionId = [Your Azure Subscription name]
+$resourceGroupName = [Your Azure Resource Group name]
 $location = "eastus"
 $iotHubName = $resourceGroupName + "IoTHub"
 $rawdataep = "rawdataep"

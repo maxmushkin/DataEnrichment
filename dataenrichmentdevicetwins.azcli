@@ -1,6 +1,6 @@
 # Initialize these variables:
-$subscriptionId = "MaxLab"
-$resourceGroupName = "maxdetwins1"
+$subscriptionId = [Your Azure Subscription name]
+$resourceGroupName = [Your Azure Resource Group name]
 $location = "eastus"
 $iotHubName = $resourceGroupName + "IoTHub"
 $rawdataep = "rawdataep"
