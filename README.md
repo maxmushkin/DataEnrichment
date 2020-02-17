@@ -39,6 +39,7 @@ In this tutorial, we will create and configure the resources that are needed to 
 ## Resources creation and configuration script
 Open dataenrichmentdevicetwins.azcli in VS Code or Azure [Cloud Shell window](https://shell.azure.com) and ensure that it's set to Bash.
 
+```azurecli-interactive
 # Initialize these variables:
 $subscriptionId = "MaxLab"
 $resourceGroupName = "maxdetwins1"
@@ -113,3 +114,4 @@ az iot hub device-twin update --device-id $deviceId --hub-name $iotHubName --set
 
 # Use this command to delete resource group when no longer needed
 # az group delete -n $resourceGroupName
+```
