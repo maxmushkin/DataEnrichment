@@ -1,0 +1,13 @@
+{
+    "bindings": [
+      {
+        "name": "events",
+        "connection": "eventHubConnectionString",
+        "eventHubName": "iotworx",
+        "consumerGroup": "$Default",
+        "cardinality": "many",
+        "direction": "in",
+        "type": "eventHubTrigger"
+      }
+    ]
+  }
