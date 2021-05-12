@@ -1,0 +1,19 @@
+{
+  "name": "SimpleDataEnrichment",
+  "version": "0.1.0",
+  "description": "Azure Function sample showing how to CRUD with NodeJS & Azure Table Storage",
+  "main": "index.js",
+  "dependencies": {
+    "azure-storage": "^2.10.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maksym Mushkin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxmushkin/DataEnrichment"
+  },
+  "homepage": "https://github.com/maxmushkin/DataEnrichment"
+}
