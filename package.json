@@ -1,7 +1,7 @@
 {
-  "name": "SimpleDataEnrichment",
+  "name": "eventhub2table",
   "version": "0.1.0",
-  "description": "Azure Function sample showing how to CRUD with NodeJS & Azure Table Storage",
+  "description": "Azure Function sample showing how to Write Event Hub messages to the Azure Table Storage grouping events by location and time",
   "main": "index.js",
   "dependencies": {
     "azure-storage": "^2.10.1"

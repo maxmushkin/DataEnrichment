@@ -1,22 +1,6 @@
-# Azure IoTHub Data Ingress samples
-## Azure Function sample showing how to Write Event Hub messages to the Azure Table Storage grouping events by location and time
-
-## Az CLI Deployment script
-
-### Prerequisites
-* You must have an Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-* Install [Visual Studio Code](https://code.visualstudio.com/).
-* IoT functionality is available in the Azure IoT CLI Extension.(o install the extension, run: "az extension add --name azure-iot")
-> 
-
-## Resources creation and configuration script
-Open deploy.azcli in VS Code or Azure [Cloud Shell window](https://shell.azure.com) and ensure that it's set to Bash.
-Specify your own Azure Subscription name and preferred Resource Group name bellow.
-
-```azurecli-interactive
 # Initialize these variables:
 $subscriptionId = "[Your Azure Subscription name]"
-$resourceGroupName = "Your Azure Resource Group name"
+$resourceGroupName = "[Your Azure Resource Group name]"
 $projectName = $resourceGroupName.ToLower()
 $location = "eastus"
 
@@ -97,7 +81,3 @@ az functionapp create --name $dataIngressFunctionAppName --storage-account $stor
 az functionapp config appsettings set --name $dataIngressFunctionAppName --resource-group $resourceGroupName --settings "EVENTHUB_CS=$eventHubCS"
 az functionapp config appsettings set --name $dataIngressFunctionAppName --resource-group $resourceGroupName --settings "AZURE_STORAGE_ACCOUNT=$storageAccountName"
 az functionapp config appsettings set --name $dataIngressFunctionAppName --resource-group $resourceGroupName --settings "AZURE_STORAGE_ACCESS_KEY=$storageAccountKey"
-```
-
-## Other samples
-* [IoTHub Message enrichment using Device Twins](https://github.com/maxmushkin/DataEnrichment/tree/DeviceTwinsEnrichment)
